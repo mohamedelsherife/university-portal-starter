@@ -1,15 +1,16 @@
-{{--
-    YOUR TASK (W14 — Blade Components):  build the <x-card> component.
+@props([
+    'title' => null,
+])
 
-    A simple panel used to wrap tables and forms:
-        <x-card>
-            ... content ...
-        </x-card>
+<div class="card shadow-sm mb-4">
+    {{-- سيظهر الهيدر فقط إذا قمت بتمرير عنوان --}}
+    @if ($title)
+        <div class="card-header">
+            <h5 class="mb-0">{{ $title }}</h5>
+        </div>
+    @endif
 
-    Suggested prop: title (optional) — show a header bar when it is provided.
-    Render the body with {{ $slot }}.
-
-    Provided CSS classes: .card, .card-header, .card-body
-
-    TODO: build the component here.
---}}
+    <div class="card-body">
+        {{ $slot }}
+    </div>
+</div>

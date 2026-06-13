@@ -1,20 +1,47 @@
-{{--
-    YOUR TASK (W14 — Blade Components):  build the <x-button> component.
+{{-- @props([
+    'href' => null,
+    'type' => 'button'
+])
 
-    You will use it all over the app, e.g.:
-        <x-button type="submit">Save</x-button>
-        <x-button :href="route('students.create')">+ New Student</x-button>
-        <x-button variant="danger" type="submit">Delete</x-button>
+@if($href)
+    <a href="{{ $href }}" class="custom-btn">
+        {{ $slot }}
+    </a>
+@else
+    <button type="{{ $type }}" class="custom-btn">
+        {{ $slot }}
+    </button>
+@endif --}}
 
-    Suggested props (declare them with @props([...])):
-        href     (optional) — if provided, render an <a>; otherwise a <button>
-        type     (default 'button')
-        variant  (default 'primary')  -> primary | secondary | danger
+@props([
+    'type' => 'regular',
+    'href' => null,
+    'method' => null,
+])
+{{-- create button --}}
+@if($type === 'create')
+    <a href="{{ $href }}" class="btn custome-btn btn-create">
+        <i class="fa-solid fa-plus"></i> Create new {{ $slot }}
+    </a>
 
-    Render the label with {{ $slot }}.
+{{-- edit button --}}
+@elseif($type === 'edit')
+    <a href="{{ $href }}" class="btn custome-btn btn-edit">
+        <i class="fa-solid fa-pen-to-square"></i> Edit
+    </a>
+{{-- delete button --}}
+@elseif($type === 'delete')
+    <form action="{{ $href }}" method="POST" style="display:inline;">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn custome-btn btn-delete">
+            <i class="fa-solid fa-trash-can"></i> Delete
+        </button>
+    </form>
 
-    The provided stylesheet already has: .btn, .btn-primary,
-    .btn-secondary, .btn-danger — use them via class="btn btn-{{ $variant }}".
-
-    TODO: build the component here.
---}}
+{{-- regular button --}}
+@else
+    <button type="button" class="btn custome-btn btn-regular">
+        {{ $slot }}
+    </button>
+@endif

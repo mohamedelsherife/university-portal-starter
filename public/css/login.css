@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #ecfdf5;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    display: flex;
+    width: 820px;
+    min-height: 480px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(11, 45, 35, 0.2);
+}
+
+/* ── Left Panel ── */
+.login-left {
+    flex: 1;
+    background: #0b2d23;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+}
+
+.crest {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(5, 150, 105, 0.15);
+    border: 2px solid rgba(5, 150, 105, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+}
+
+.login-left h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f0faf5;
+    text-align: center;
+    margin-bottom: 0.3rem;
+}
+
+.login-left div i{
+    color: #fff;
+}
+
+.tagline {
+    font-size: 11px;
+    color: #6ee7b7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.left-divider {
+    width: 36px;
+    height: 2px;
+    background: rgba(5, 150, 105, 0.5);
+    margin: 1.5rem auto;
+}
+
+.left-quote {
+    font-size: 12.5px;
+    color: rgba(240, 250, 245, 0.45);
+    text-align: center;
+    line-height: 1.8;
+    max-width: 175px;
+}
+
+/* ── Right Panel ── */
+.login-right {
+    flex: 1.1;
+    background: #f0faf5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.5rem;
+}
+
+.top-bar {
+    height: 4px;
+    background: #059669;
+    border-radius: 2px;
+    margin-bottom: 1.75rem;
+}
+
+.login-right h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0b2d23;
+    margin-bottom: 0.25rem;
+}
+
+.subtitle {
+    font-size: 13.5px;
+    color: #065f46;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+}
+
+/* ── Error Alert ── */
+.alert-error {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    margin-bottom: 1.25rem;
+}
+
+/* ── Form Fields ── */
+.field {
+    margin-bottom: 1.2rem;
+}
+
+.field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #065f46;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.input-wrap input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1.5px solid #d1fae5;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #0b2d23;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-wrap input:focus {
+    border-color: #059669;
+}
+
+.input-wrap input::placeholder {
+    color: #71d8a8;
+    font-size: 13px;
+}
+
+/* ── Remember / Forgot ── */
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.check-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: #065f46;
+    cursor: pointer;
+}
+
+.check-label input[type="checkbox"] {
+    accent-color: #059669;
+    width: 15px;
+    height: 15px;
+}
+
+.forgot-link {
+    font-size: 13px;
+    color: #059669;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* ── Submit Button ── */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #059669, #065f46);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.2s;
+}
+
+.btn-login:hover,
+.btn-login:active {
+    background: linear-gradient(135deg, #065f46, #0b2d23);
+}
+
+.login-link{
+    color: #fff;
+    text-decoration: none;
+}
+
+/* background: #065f46; */

@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentController;
@@ -38,3 +37,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // TODO: write your routes below this line.
+Route::get('/', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/layout', function () {
+    return view('layouts.app');
+})->name('layouts');
