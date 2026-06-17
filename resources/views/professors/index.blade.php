@@ -19,13 +19,14 @@
 @section('your-title', 'university Professors')
 
 @section('content')
+
+
+    <x-card>
     <h1>Professors</h1>
 
     <x-button type="create" :href="route('professors.create')">
         Professor
     </x-button>
-
-    <x-card>
 
         <x-table>
             <x-slot:thead>
