@@ -41,6 +41,10 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('login');
 
+Route::get('/sign-up', function () {
+    return view('auth.sign-up');
+})->name('sign-up');
+
 Route::get('/layout', function () {
     return view('layouts.app');
 })->name('layouts');
