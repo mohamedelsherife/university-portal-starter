@@ -1,18 +1,42 @@
 {{--
     YOUR TASK (W10 + W13):  list every course.
-
-    The controller passes in:
-        $courses  — an array of App\DTOs\CourseDTO
-
-    Each CourseDTO gives you:
-        getId(), getTitle(), getCourseCode(), getCreditHours(),
-        getDepartmentId(), getDepartmentName()
-
-    Build a table (loop with @foreach) with, per row:
-        - an "Edit" link    -> route('courses.edit', $course->getId())
-        - a "Delete" <form> (POST + @csrf + @method('DELETE'))
-              action -> route('courses.destroy', $course->getId())
-    Plus a "New Course" link -> route('courses.create').
-
-    TODO: build the view here.
 --}}
+
+@extends('layouts.app')
+
+@section('your-title', 'University Courses')
+
+@section('content')
+
+<x-card>
+    <h1>Courses</h1>
+
+    <x-button type="create" :href="route('courses.create')">Course</x-button>
+
+    <x-table>
+        <x-slot:thead>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Course Code</th>
+            <th>Credit Hours</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </x-slot:thead>
+
+        @foreach ($courses as $course)
+            <tr>
+                <td>{{ $course->getId() }}</td>
+                <td>{{ $course->getTitle() }}</td>
+                <td>{{ $course->getCourseCode() }}</td>
+                <td>{{ $course->getCreditHours() }}</td>
+                <td>{{ $course->getDepartmentName() ?? 'No Department' }}</td>
+                <td>
+                    <x-button type="edit" :href="route('courses.edit', $course->getId())" />
+                    <x-button type="delete" :href="route('courses.destroy', $course->getId())" />
+                </td>
+            </tr>
+        @endforeach
+    </x-table>
+</x-card>
+
+@endsection
