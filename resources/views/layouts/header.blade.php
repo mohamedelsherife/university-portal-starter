@@ -1,25 +1,47 @@
 <header>
-  <div class="logo"><a href="#"><i class="fa-solid fa-graduation-cap"></i> university portal</a></div>
+  <div class="logo">
+    <a href="#">
+      <i class="fa-solid fa-graduation-cap"></i> university portal
+    </a>
+  </div>
+
   <nav>
-    <a href="#"><i class="fa-solid fa-chart-column"></i> Dashboard</a>
-    <a href="{{ route('departments.index') }}"><i class="fa-regular fa-building"></i> Departments</a>
-    
+    <a href="#">
+      <i class="fa-solid fa-chart-column"></i> Dashboard
+    </a>
+
+    <a href="{{ route('departments.index') }}">
+      <i class="fa-regular fa-building"></i> Departments
+    </a>
+
     <a href="{{ route('students.index') }}">
-    <i class="fa-solid fa-user-graduate"></i> Students</a>
+      <i class="fa-solid fa-user-graduate"></i> Students
+    </a>
 
+    <a href="{{ route('courses.index') }}">
+      <i class="fa-solid fa-book"></i> Courses
+    </a>
 
-    <a href="#"><i class="fa-solid fa-book"></i> Courses</a>
-    <a href="{{ route('professors.index') }}"><i class="fa-solid fa-person-chalkboard"></i> Professors</a>
+    <a href="{{ route('professors.index') }}">
+      <i class="fa-solid fa-person-chalkboard"></i> Professors
+    </a>
 
-
-        <div class="profile-dropdown">
+    <div class="profile-dropdown">
       <input type="checkbox" id="profileToggle">
+
       <label for="profileToggle">
-        <i class="fa-regular fa-circle-user"></i><i class="fa-solid fa-angle-down" style="margin-left: 6px;"></i>
+        <i class="fa-regular fa-circle-user"></i>
+        <i class="fa-solid fa-angle-down" style="margin-left: 6px;"></i>
       </label>
+
       <div class="profile-menu">
-        <a href="profile-page.html"><i class="fa-regular fa-circle-user"></i> Profile</a>
-        <a href={{ route('login') }}><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        <a href="profile-page.html">
+          <i class="fa-regular fa-circle-user"></i> Profile
+        </a>
+
+        <a href="{{ route('login') }}">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
       </div>
     </div>
   </nav>
