@@ -15,8 +15,21 @@ Route::get('/login', function () {
     return redirect()->route('departments.index');
 })->name('login');
 
-Route::resource('departments', DepartmentController::class)->except('show');
-Route::resource('students', StudentController::class)->except('show');
-Route::resource('courses', CourseController::class)->except('show');
-Route::resource('professors', ProfessorController::class)->except('show');
-Route::resource('enrollments', EnrollmentController::class)->except('show');
+Route::get('/register', function () {
+    return view('auth.sign-up');
+})->name('register');
+
+Route::resource('departments', DepartmentController::class)
+    ->except('show');
+
+Route::resource('students', StudentController::class)
+    ->except('show');
+
+Route::resource('courses', CourseController::class)
+    ->except('show');
+
+Route::resource('professors', ProfessorController::class)
+    ->except('show');
+
+Route::resource('enrollments', EnrollmentController::class)
+    ->except('show');

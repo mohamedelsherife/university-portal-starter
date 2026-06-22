@@ -1,60 +1,32 @@
 {{--
-    YOUR TASK (W10):  form to create a new course.
+    YOUR TASK (W10):  form to create a new department.
 --}}
 
 @extends('layouts.app')
 
-@section('your-title', 'Create Course')
+@section('your-title', 'Create Department')
 
 @section('content')
-<div class="container">
-    <h1>Create New Course</h1>
 
-    <x-button type="back" :href="route('courses.index')" />
+<x-button type="back" :href="route('departments.index')" />
 
-    <x-card>
-        <x-form action="{{ route('courses.store') }}" method="POST">
-            @csrf
+<x-card title="Create New Department">
+    <x-form action="{{ route('departments.store') }}" method="POST">
+        @csrf
 
-            <x-form-input
-                name="title"
-                label="Course Title"
-                type="text"
-                placeholder="e.g. Database Systems"
-            />
+        <x-form-input
+            name="name"
+            label="Department Name"
+            type="text"
+            placeholder="e.g. Computer Science"
+            required
+        />
 
-            <x-form-input
-                name="course_code"
-                label="Course Code"
-                type="text"
-                placeholder="e.g. IT205"
-            />
+        <x-button type="submit">
+            Save Department
+        </x-button>
 
-            <x-form-input
-                name="credit_hours"
-                label="Credit Hours"
-                type="number"
-                placeholder="3"
-            />
+    </x-form>
+</x-card>
 
-            <label class="form-label">Department</label>
-            <select name="department_id" class="form-control">
-                <option value="">Select Department</option>
-
-                @foreach ($departmentOptions as $id => $name)
-                    <option value="{{ $id }}">
-                        {{ $name }}
-                    </option>
-                @endforeach
-            </select>
-
-            <br>
-
-            <x-button type="submit">
-                Save Course
-            </x-button>
-
-        </x-form>
-    </x-card>
-</div>
 @endsection

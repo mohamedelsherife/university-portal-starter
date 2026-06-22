@@ -19,12 +19,11 @@
 @section('your-title', 'Edit Department')
 
 @section('content')
-<div class="container">
-    <h1>Edit Department</h1>
+    
 
     <x-button type="back" :href="route('departments.index')" />
 
-    <x-card>
+    <x-card title="Edit Department">
         <x-form action="{{ route('departments.update', $department->getId()) }}" method="POST">
             @csrf
             @method('PUT')
@@ -40,5 +39,4 @@
             <x-button type="submit">Update Department</x-button>
         </x-form>
     </x-card>
-</div>
 @endsection

@@ -1,0 +1,17 @@
+/* ── Bottom Link (Sign up / Login switch) ── */
+.bottom-text {
+    margin-top: 1.25rem;
+    font-size: 13px;
+    color: #4a4a4a;
+    text-align: center;
+}
+
+.bottom-link {
+    color: #D99A26;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.bottom-link:hover {
+    text-decoration: underline;
+}
