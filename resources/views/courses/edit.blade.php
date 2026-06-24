@@ -1,67 +1,63 @@
-{{--
-YOUR TASK (W10):  form to edit an existing course.
---}}
-
 @extends('layouts.app')
 
-@section('your-title', 'Edit Course')
+@section('page-title','Edit Course')
 
 @section('content')
 
-<div class="container">
-    <h1>Edit Course</h1>
+<x-button
+type="back"
+:href="route('courses.index')"
+/>
 
-```
-<x-button type="back" :href="route('courses.index')" />
+<x-card title="Edit Course">
 
-<x-card>
-    <x-form action="{{ route('courses.update', $course->getId()) }}" method="POST">
-        @csrf
-        @method('PUT')
+<x-form
+action="{{ route('courses.update', $course->getId()) }}"
+method="POST">
 
-        <x-form-input
-            name="title"
-            label="Course Title"
-            type="text"
-            :value="$course->getTitle()"
-        />
+@csrf
+@method('PUT')
 
-        <x-form-input
-            name="course_code"
-            label="Course Code"
-            type="text"
-            :value="$course->getCourseCode()"
-        />
+<x-form-input
+name="title"
+label="Course Title"
+placeholder="e.g. Database Systems"
+:value="$course->getTitle()"
+required
+/>
 
-        <x-form-input
-            name="credit_hours"
-            label="Credit Hours"
-            type="number"
-            :value="$course->getCreditHours()"
-        />
+<x-form-input
+name="course_code"
+label="Course Code"
+placeholder="e.g. IT205"
+:value="$course->getCourseCode()"
+required
+/>
 
-        <label class="form-label">Department</label>
-        <select name="department_id" class="form-control">
-            <option value="">Select Department</option>
+<x-form-input
+name="credit_hours"
+label="Credit Hours"
+type="number"
+placeholder="e.g. 3"
+:value="$course->getCreditHours()"
+required
+/>
 
-            @foreach ($departmentOptions as $id => $name)
-                <option value="{{ $id }}"
-                    {{ $course->getDepartmentId() == $id ? 'selected' : '' }}>
-                    {{ $name }}
-                </option>
-            @endforeach
-        </select>
+<x-form-select
+name="department_id"
+label="Department"
+:options="$departmentOptions"
+:value="$course->getDepartmentId()"
+placeholder="Select Department"
+/>
 
-        <br>
+<x-button type="submit">
+Update Course
+</x-button>
 
-        <x-button type="submit">
-            Update Course
-        </x-button>
+</x-form>
 
-    </x-form>
 </x-card>
-```
 
-</div>
 @endsection
 

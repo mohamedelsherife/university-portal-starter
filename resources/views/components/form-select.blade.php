@@ -2,7 +2,7 @@
     'name',
     'label',
     'options' => [],
-    'placeholder' => '-- Select --',
+    'placeholder' => 'Select Department',
     'value' => null,
 ])
 
@@ -20,6 +20,7 @@
         onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none';"
     >
         <option value="">{{ $placeholder }}</option>
+
         @foreach ($options as $optionId => $optionLabel)
             <option value="{{ $optionId }}" @selected(old($name, $value) == $optionId)>
                 {{ $optionLabel }}

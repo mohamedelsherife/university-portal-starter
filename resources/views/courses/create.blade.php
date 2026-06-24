@@ -4,14 +4,14 @@
 
 @section('content')
 
-<x-card title="Create Course">
-
-<x-button 
+<x-button
 type="back"
 :href="route('courses.index')"
 />
 
-<x-form 
+<x-card title="Create Course">
+
+<x-form
 action="{{ route('courses.store') }}"
 method="POST">
 
@@ -43,6 +43,7 @@ required
 name="department_id"
 label="Department"
 :options="$departmentOptions"
+placeholder="Select Department"
 />
 
 <x-button type="submit">
