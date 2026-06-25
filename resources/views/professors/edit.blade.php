@@ -22,11 +22,11 @@
 @section('page-title', 'Edit Professor')
 
 @section('content')
-    <h1>Edit Professor</h1>
+
 
     <x-button type="back" :href="route('professors.index')" />
 
-    <x-card>
+    <x-card title="Edit Professor">
         <x-form action="{{ route('professors.update', $professor->getId()) }}" method="POST">
             @csrf
             @method('PUT')

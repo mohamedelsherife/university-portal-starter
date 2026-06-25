@@ -1,17 +1,58 @@
-{{--
-    YOUR TASK (W10):  form to create a new course.
+@extends('layouts.app')
 
-    The controller passes in:
-        $departmentOptions  — an array of [id => name] for a dropdown
+@section('page-title','Create Course')
 
-    Submit with:
-        method="POST"  action="{{ route('courses.store') }}"  @csrf
+@section('content')
 
-    Validated fields (use these as input name=""):
-        title         (required)
-        course_code   (required)
-        credit_hours  (required, a whole number between 1 and 12)
-        department_id (optional)
+<x-button
+type="back"
+:href="route('courses.index')"
+/>
 
-    TODO: build the form here.
---}}
+<x-card title="Create Course">
+
+<x-form
+action="{{ route('courses.store') }}"
+method="POST">
+
+@csrf
+
+<x-form-input
+name="title"
+label="Course Title"
+placeholder="e.g. Database Systems"
+required
+/>
+
+<x-form-input
+name="course_code"
+label="Course Code"
+placeholder="e.g. IT205"
+required
+/>
+
+<x-form-input
+name="credit_hours"
+label="Credit Hours"
+type="number"
+placeholder="e.g. 3"
+required
+/>
+
+<x-form-select
+name="department_id"
+label="Department"
+:options="$departmentOptions"
+placeholder="Select Department"
+/>
+
+<x-button type="submit">
+Save Course
+</x-button>
+
+</x-form>
+
+</x-card>
+
+@endsection
+

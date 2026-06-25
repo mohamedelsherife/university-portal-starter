@@ -20,10 +20,9 @@
 @section('your-title', 'Create Professor')
 
 @section('content')
-    <h1>Create New Professor</h1>
 
     <x-button type="back" :href="route('professors.index')" />
-    <x-card>
+    <x-card title="Create New Professor">
         <x-form action="{{ route('professors.store') }}" method="POST">
             @csrf
 

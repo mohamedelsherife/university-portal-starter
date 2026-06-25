@@ -1,18 +1,63 @@
-{{--
-    YOUR TASK (W10):  form to edit an existing course.
+@extends('layouts.app')
 
-    The controller passes in:
-        $course             — an App\DTOs\CourseDTO (getters listed in courses/index)
-        $departmentOptions  — an array of [id => name]
+@section('page-title','Edit Course')
 
-    Submit with:
-        method="POST" + @csrf + @method('PUT')
-        action="{{ route('courses.update', $course->getId()) }}"
+@section('content')
 
-    Pre-fill each input from the DTO and pre-select the current department
-    ($course->getDepartmentId()).
+<x-button
+type="back"
+:href="route('courses.index')"
+/>
 
-    Validated fields:  title, course_code, credit_hours, department_id
+<x-card title="Edit Course">
 
-    TODO: build the form here.
---}}
+<x-form
+action="{{ route('courses.update', $course->getId()) }}"
+method="POST">
+
+@csrf
+@method('PUT')
+
+<x-form-input
+name="title"
+label="Course Title"
+placeholder="e.g. Database Systems"
+:value="$course->getTitle()"
+required
+/>
+
+<x-form-input
+name="course_code"
+label="Course Code"
+placeholder="e.g. IT205"
+:value="$course->getCourseCode()"
+required
+/>
+
+<x-form-input
+name="credit_hours"
+label="Credit Hours"
+type="number"
+placeholder="e.g. 3"
+:value="$course->getCreditHours()"
+required
+/>
+
+<x-form-select
+name="department_id"
+label="Department"
+:options="$departmentOptions"
+:value="$course->getDepartmentId()"
+placeholder="Select Department"
+/>
+
+<x-button type="submit">
+Update Course
+</x-button>
+
+</x-form>
+
+</x-card>
+
+@endsection
+

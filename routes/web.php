@@ -8,32 +8,29 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
-
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('departments.index');
 });
 
-// Resources
-Route::resource('departments', DepartmentController::class)->except('show');
-Route::resource('students', StudentController::class)->except('show');
-Route::resource('courses', CourseController::class)->except('show');
-Route::resource('professors', ProfessorController::class)->except('show');
-Route::resource('enrollments', EnrollmentController::class)->except('show');
-
-// Auth pages (views)
 Route::get('/login', function () {
-    return view('auth.login');
+    return redirect()->route('departments.index');
 })->name('login');
 
 Route::get('/register', function () {
-    return view('auth.register');
+    return view('auth.sign-up');
 })->name('register');
 
-// Auth actions
-Route::post('/login', [AuthController::class, 'login'])->name('login.post');
-Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+Route::resource('departments', DepartmentController::class)
+    ->except('show');
+
+Route::resource('students', StudentController::class)
+    ->except('show');
+
+Route::resource('courses', CourseController::class)
+    ->except('show');
+
+Route::resource('professors', ProfessorController::class)
+    ->except('show');
+
+Route::resource('enrollments', EnrollmentController::class)
+    ->except('show');

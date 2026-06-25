@@ -293,11 +293,17 @@ footer {
 }
 
 .card-header {
-    background: #D99A26;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
     color: #ffffff;
     border: none;
+    border-bottom: 2px solid rgba(242, 179, 61, 0.4);
     border-radius: 15px 15px 0 0 !important;
     padding: 14px 20px;
+}
+
+.card-header i,
+.card-header .header-accent {
+    color: #F2B33D;
 }
 
 /* Profile Dropdown */

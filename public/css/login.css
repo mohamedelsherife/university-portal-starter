@@ -220,3 +220,32 @@ body {
 }
 
 /* background: #0a0a0a; */
+
+
+/* ── Bottom Link (Sign up / Login switch) ── */
+.bottom-text {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #eee;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+}
+
+.bottom-link {
+    color: #D99A26;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: color 0.2s;
+}
+
+.bottom-link:hover {
+    color: #F2B33D;
+    text-decoration: underline;
+}
+
+/* يمنع اللون البنفسجي بعد الزيارة */
+.bottom-link:visited {
+    color: #D99A26;
+}
