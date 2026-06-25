@@ -21,10 +21,10 @@
 @section('content')
 <h1 class="page-title">Professors</h1>
         <x-card>
-        <div class="toolbar">
+            <div class="toolbar">
             <x-search-bar target=".professor-row" placeholder="Search by name, email or department..." />
             <x-button type="create" :href="route('professors.create')">Professor</x-button>
-        </div>
+            </div>
     </x-card>
         
     
