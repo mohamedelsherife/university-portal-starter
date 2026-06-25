@@ -39,9 +39,13 @@
           <i class="fa-regular fa-circle-user"></i> Profile
         </a>
 
-        <a href="{{ route('login') }}">
-          <i class="fa-solid fa-right-from-bracket"></i> Logout
-        </a>
+        <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </button>
+</form>
+
       </div>
     </div>
   </nav>
