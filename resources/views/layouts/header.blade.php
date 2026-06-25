@@ -19,7 +19,7 @@
       </label>
       <div class="profile-menu">
         <a href="profile-page.html"><i class="fa-regular fa-circle-user"></i> Profile</a>
-        <a href={{ route('login') }}><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        <a href="{{ url('/') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
       </div>
     </div>
   </nav>

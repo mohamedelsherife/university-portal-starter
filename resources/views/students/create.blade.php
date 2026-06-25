@@ -7,60 +7,65 @@
 @section('content')
 
 
-<x-card title="Create Student">
-
-
 <x-button 
-type="back"
-:href="route('students.index')"
+    type="back"
+    :href="route('students.index')"
 />
 
 
 
+<x-card title="Create Student">
+
+
 <x-form 
-action="{{ route('students.store') }}"
-method="POST">
+    action="{{ route('students.store') }}"
+    method="POST">
 
 
 @csrf
 
 
+
 <x-form-input
-name="name"
-label="Name"
-required
+    name="name"
+    label="Name"
+    type="text"
+    placeholder="Enter student name"
 />
 
 
+
 <x-form-input
-name="email"
-label="Email"
-type="email"
-required
+    name="email"
+    label="Email"
+    type="email"
+    placeholder="Enter student email"
 />
 
 
+
 <x-form-input
-name="student_number"
-label="Student Number"
+    name="student_number"
+    label="Student Number"
+    type="text"
+    placeholder="Enter student number"
 />
 
 
 
 <x-form-select
-
-name="department_id"
-
-label="Department"
-
-:options="$departmentOptions"
-
+    name="department_id"
+    label="Department"
+    :options="$departmentOptions"
+    placeholder="Select Department"
 />
 
 
+
 <x-button type="submit">
-Save Student
+    Save Student
 </x-button>
+
 
 
 </x-form>

@@ -6,7 +6,8 @@
 @section('content')
 
 
-<x-card title="Students">
+<x-card>
+    <h1>Students</h1>
 
 
 <x-button

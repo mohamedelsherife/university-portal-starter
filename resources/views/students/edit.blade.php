@@ -7,24 +7,19 @@
 @section('content')
 
 
-<x-card title="Edit Student">
-
-
-<x-button
-
-type="back"
-
-:href="route('students.index')"
-
+<x-button 
+    type="back"
+    :href="route('students.index')"
 />
 
 
 
-<x-form
+<x-card title="Edit Student">
 
-action="{{ route('students.update',$student->getId()) }}"
 
-method="POST">
+<x-form 
+    action="{{ route('students.update', $student->getId()) }}"
+    method="POST">
 
 
 @csrf
@@ -34,65 +29,52 @@ method="POST">
 
 
 <x-form-input
-
-name="name"
-
-label="Name"
-
-:value="$student->getName()"
-
+    name="name"
+    label="Name"
+    type="text"
+    value="{{ $student->getName() }}"
+    placeholder="Enter student name"
 />
 
 
+
 <x-form-input
-
-name="email"
-
-label="Email"
-
-type="email"
-
-:value="$student->getEmail()"
-
+    name="email"
+    label="Email"
+    type="email"
+    value="{{ $student->getEmail() }}"
+    placeholder="Enter student email"
 />
 
 
+
 <x-form-input
-
-name="student_number"
-
-label="Student Number"
-
-:value="$student->getStudentNumber()"
-
+    name="student_number"
+    label="Student Number"
+    type="text"
+    value="{{ $student->getStudentNumber() }}"
+    placeholder="Enter student number"
 />
 
 
 
 <x-form-select
-
-name="department_id"
-
-label="Department"
-
-:options="$departmentOptions"
-
-:value="$student->getDepartmentId()"
-
+    name="department_id"
+    label="Department"
+    :options="$departmentOptions"
+    value="{{ $student->getDepartmentId() }}"
+    placeholder="Select Department"
 />
 
 
 
 <x-button type="submit">
-
 Update Student
-
 </x-button>
 
 
 
 </x-form>
-
 
 
 </x-card>
