@@ -6,6 +6,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,10 +15,11 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard', [
-        'departmentsCount' => \Illuminate\Support\Facades\DB::table('departments')->count(),
-        'studentsCount' => \Illuminate\Support\Facades\DB::table('students')->count(),
-        'coursesCount' => \Illuminate\Support\Facades\DB::table('courses')->count(),
-        'professorsCount' => \Illuminate\Support\Facades\DB::table('professors')->count(),
+        'departmentsCount' => DB::table('departments')->count(),
+        'studentsCount' => DB::table('students')->count(),
+        'coursesCount' => DB::table('courses')->count(),
+        'professorsCount' => DB::table('professors')->count(),
+        'enrollmentsCount' => DB::table('enrollments')->count(),
     ]);
 })->name('dashboard');
 
