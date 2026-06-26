@@ -65,7 +65,9 @@
 
 
 <td>
-{{ $student->getDepartmentName() ?? '-' }}
+
+{!! $student->getDepartmentName() ?? '<span class="badge border border-danger text-danger">No Department</span>' !!}
+
 </td>
 
 

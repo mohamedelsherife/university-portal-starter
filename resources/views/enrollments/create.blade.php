@@ -20,3 +20,43 @@
 
     TODO: build the form here.
 --}}
+
+@extends('layouts.app')
+
+@section('your-title', 'Create Enrollment')
+
+@section('content')
+
+    <x-button type="back" :href="route('enrollments.index')" />
+    <x-card title="Create New Enrollment">
+        <x-form action="{{ route('enrollments.store') }}" method="POST">
+            @csrf
+
+            <x-form-select
+                name="student_id"
+                label="student ID"
+                :options="$studentOptions"
+                placeholder="Select Student ID"
+                required
+            />
+
+            <x-form-select
+                name="course_id"
+                label="Course ID"
+                :options="$courseOptions"
+                placeholder="Select Course ID"
+                required
+            />
+
+                <x-form-input
+                name="grade"
+                label="Student Grade"
+                type="text"
+                placeholder="e.g. A+"
+        
+            />
+
+            <x-button type="submit">Save Enrollment</x-button>
+        </x-form>
+    </x-card>
+@endsection

@@ -45,13 +45,15 @@
                     <td>{{ $professor->getName() }}</td>
                     <td>{{ $professor->getEmail() }}</td>
 
-                    <td class="{{ $professor->getDepartmentId() ? '' : 'text-danger fw-bold' }}">
-                        {{ $professor->getDepartmentId() ?? '—' }}
+                    <td>
+                        {!! $professor->getDepartmentId() ?? '<span class="badge border border-danger text-danger">Null</span>' !!}
                     </td>
 
-                    <td class="{{ $professor->getDepartmentName() ? '' : 'text-danger fw-bold' }}">
-                        {{ $professor->getDepartmentName() ?? 'Unassigned' }}
-                    </td>
+
+
+                   <td>
+                    {!! $professor->getDepartmentName() ?? '<span class="badge border border-danger text-danger">Unassigned</span>' !!}
+                </td>
 
                     <td>
                         <x-button

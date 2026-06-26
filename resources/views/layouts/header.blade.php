@@ -26,6 +26,11 @@
       <i class="fa-solid fa-person-chalkboard"></i> Professors
     </a>
 
+    <a href="{{ route('enrollments.index') }}">
+      <i class="fa-solid fa-users"></i> Enrollments
+    </a>
+
+
     <div class="profile-dropdown">
       <input type="checkbox" id="profileToggle">
 

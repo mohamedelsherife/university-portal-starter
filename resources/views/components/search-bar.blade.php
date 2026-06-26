@@ -1,5 +1,5 @@
 @props([
-    'target' => null,      // الآن هذا selector للـ rows، مثلاً '.professor-row'
+    'target' => null,      
     'placeholder' => 'Search...',
     'id' => 'searchInput_' . uniqid(),
     'dark' => false,
