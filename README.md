@@ -132,6 +132,42 @@ views/enrollments/edit.blade.php
 
 ---
 
+## 🎨 UI / Design
+
+The interface follows a consistent, dark-navbar + light-content theme across all modules.
+
+**Layout & Style**
+- **Navbar**: full black bar with a 🎓 "University Portal" logo on the left, gold/yellow navigation links with icons (Dashboard, Departments, Students, Courses, Professors, Enrollments), and a user dropdown on the far right.
+- **Accent color**: gold/yellow is used consistently for active states, buttons, and badge borders.
+- **Background**: light off-white background for page content, contrasting with the black navbar.
+
+**Index Pages (e.g., Students, Courses, Departments)**
+- Bold page title (e.g., "Students").
+- A **search bar** with a 🔍 icon and a placeholder like "Search by name, email or department..." — powered by **JavaScript** for instant/live filtering without a page reload.
+- A prominent yellow **"+ Create new [Entity]"** button next to the search bar.
+- A **data table** with a black header row and columns such as ID, Name, Email, Student Number, Department, Actions.
+- Status/relationship fields (e.g., Department) are shown as **badges** — a plain label when set, or a red-outlined "No Department" badge when missing.
+- **Actions column** has circular icon buttons: an edit button (yellow outline, pencil icon) and a delete button (red outline, trash icon).
+
+**Reusable Blade Components**
+
+All pages are built on top of a shared set of Blade components (fulfilling W14 — Reusable Components):
+
+```
+components/
+├── button.blade.php        → styled buttons (create, edit, delete)
+├── card.blade.php          → content cards/containers
+├── form-input.blade.php    → text input fields
+├── form-select.blade.php   → dropdown/select fields
+├── form.blade.php          → form wrapper
+├── search-bar.blade.php    → JS-powered live search bar
+└── table.blade.php         → reusable data table
+```
+
+The `search-bar.blade.php` component encapsulates the JavaScript logic for live search, and is reused across all index pages (Students, Courses, Departments, Professors, Enrollments) so every module shares the exact same look and search behavior.
+
+---
+
 ## 🏗️ Architecture Pattern
 
 ```
