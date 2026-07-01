@@ -38,27 +38,23 @@
 
         <x-table>
             <x-slot:thead>
-                <th>ID</th>
-                <th>Student ID</th>
-                <th>Course ID</th>
-                <th>Grade</th>
                 <th>Student name</th>
                 <th>Course Title</th>
                 <th>Course Code</th>
+                <th>Grade</th>
                 <th>Actions</th>
             </x-slot:thead>
 
             @foreach ($enrollments as $enrollment)
                 <tr class="enrollment-row">
-                    <td>{{ $enrollment->getId() }}</td>
-                    <td>{{ $enrollment->getStudentId() }}</td>
-                    <td>{{ $enrollment->getCourseId() }}</td>
-                    <td>
-                        {!! $enrollment->getGrade() ?? '<span class="badge border border-danger text-danger">Ungraded</span>' !!}
-                    </td>
                     <td>{{ $enrollment->getStudentName() }}</td>
                     <td>{{ $enrollment->getCourseTitle()  }}</td>
                     <td>{{ $enrollment->getCourseCode() }}</td>
+
+                    <td>
+                        {!! $enrollment->getGrade() ?? '<span class="badge border border-danger text-danger">Ungraded</span>' !!}
+                    </td>
+                    
                     <td>
                         <x-button
                             type="edit"
