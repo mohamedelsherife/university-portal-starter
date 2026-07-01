@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\DepartmentService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
 
 /**
  * DepartmentController (Student 1, Module B).
@@ -37,8 +39,12 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-        ]);
+            'name' => ['required', 'string', 'max:255', 'unique:departments,name'],
+        ], [
+        'name.required' => 'Department name is required.',
+        'name.unique'   => 'A department with this name already exists, try another',
+        'name.max'      => 'Department name is too long.',
+    ]);
 
         $this->departments->create($data);
 
@@ -62,8 +68,12 @@ class DepartmentController extends Controller
     public function update(Request $request, int $id)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-        ]);
+            'name' => ['required', 'string', 'max:255', Rule::unique('departments', 'name')->ignore($id),],
+        ], [
+        'name.required' => 'Department name is required.',
+        'name.unique'   => 'A department with this name already exists.',
+        'name.max'      => 'Department name is too long.',
+    ]);
 
         $this->departments->update($id, $data);
 

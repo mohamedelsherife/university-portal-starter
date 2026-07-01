@@ -7,6 +7,11 @@
 @section('your-title', 'Create Department')
 
 @section('content')
+@if ($errors->any())
+    <x-alert type="error">
+        {{ $errors->first() }}
+    </x-alert>
+@endif
 
 <x-button type="back" :href="route('departments.index')" />
 
