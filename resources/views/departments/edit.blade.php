@@ -34,6 +34,7 @@
                 type="text"
                 placeholder="e.g. Computer Science"
                 :value="$department->getName()"
+                required
             />
 
             <x-button type="submit">Update Department</x-button>

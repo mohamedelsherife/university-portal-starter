@@ -22,6 +22,18 @@
 @section('your-title', 'university Department')
 
 @section('content')
+@if (session('success'))
+    <x-alert type="success">
+        {{ session('success') }}
+    </x-alert>
+@endif
+
+@if (session('error'))
+    <x-alert type="error">
+        {{ session('error') }}
+    </x-alert>
+@endif
+
 
     <h1 class="page-title">Departments</h1>
 
