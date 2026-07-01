@@ -5,30 +5,37 @@
     </a>
   </div>
 
+  <input type="checkbox" id="navToggle" class="nav-toggle-checkbox">
+  <label for="navToggle" class="nav-toggle-label">
+    <i class="fa-solid fa-bars"></i>
+  </label>
+
   <nav>
-    <a href="{{ route('dashboard') }}">
-      <i class="fa-solid fa-chart-column"></i> Dashboard
-    </a>
+    <div class="nav-links">
+      <a href="{{ route('dashboard') }}">
+        <i class="fa-solid fa-chart-column"></i> Dashboard
+      </a>
 
-    <a href="{{ route('departments.index') }}">
-      <i class="fa-regular fa-building"></i> Departments
-    </a>
+      <a href="{{ route('departments.index') }}">
+        <i class="fa-regular fa-building"></i> Departments
+      </a>
 
-    <a href="{{ route('students.index') }}">
-      <i class="fa-solid fa-user-graduate"></i> Students
-    </a>
+      <a href="{{ route('students.index') }}">
+        <i class="fa-solid fa-user-graduate"></i> Students
+      </a>
 
-    <a href="{{ route('courses.index') }}">
-      <i class="fa-solid fa-book"></i> Courses
-    </a>
+      <a href="{{ route('courses.index') }}">
+        <i class="fa-solid fa-book"></i> Courses
+      </a>
 
-    <a href="{{ route('professors.index') }}">
-      <i class="fa-solid fa-person-chalkboard"></i> Professors
-    </a>
+      <a href="{{ route('professors.index') }}">
+        <i class="fa-solid fa-person-chalkboard"></i> Professors
+      </a>
 
-    <a href="{{ route('enrollments.index') }}">
-      <i class="fa-solid fa-users"></i> Enrollments
-    </a>
+      <a href="{{ route('enrollments.index') }}">
+        <i class="fa-solid fa-users"></i> Enrollments
+      </a>
+    </div>
 
     <div class="profile-dropdown">
       <input type="checkbox" id="profileToggle">
@@ -53,5 +60,3 @@
     </div>
   </nav>
 </header>
-```
-

@@ -625,3 +625,152 @@ footer {
     gap: 8px;
     align-items: center;
 }
+
+
+
+/* ============ RESPONSIVE ============ */
+
+/* Hamburger toggle - مخفي على الشاشات الكبيرة */
+.nav-toggle-checkbox {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    color: #F2B33D;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-toggle-label:hover {
+    background: rgba(242, 179, 61, 0.15);
+}
+
+nav {
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 992px) {
+    header {
+        flex-wrap: wrap;
+        padding: 15px 20px;
+    }
+
+    .nav-toggle-label {
+        display: flex;
+        align-items: center;
+        order: 2;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 4px;
+        padding-top: 12px;
+    }
+
+    .nav-toggle-checkbox:checked ~ nav .nav-links {
+        display: flex;
+    }
+
+    nav a {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 8px;
+    }
+
+    nav a.active {
+        border-bottom: none;
+        border-left: 3px solid #F2B33D;
+        border-radius: 6px;
+    }
+
+    .profile-dropdown {
+        align-self: flex-end;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo a {
+        font-size: 1.2rem;
+    }
+}
+
+/* ============ Toolbar / Search / Buttons ============ */
+@media (max-width: 768px) {
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .toolbar .search-bar-wrapper {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ============ Table ============ */
+@media (max-width: 768px) {
+    .table-wrapper .data-table thead th,
+    .table-wrapper .data-table td {
+        padding: 10px 14px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .table-wrapper .data-table td:last-child {
+        gap: 6px;
+    }
+}
+
+/* ============ Cards / Footer / Modal ============ */
+@media (max-width: 768px) {
+    footer {
+        padding: 30px 20px 0;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .footer-divider {
+        display: none;
+    }
+
+    .footer-bar {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #deleteModal .modal-box {
+        padding: 1.5rem;
+        width: 320px;
+    }
+}
