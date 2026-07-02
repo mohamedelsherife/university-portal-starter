@@ -215,7 +215,7 @@ The portal adapts across breakpoints (992px / 768px / 576px / 480px) covering:
 
 ```bash
 git clone https://github.com/mohamedelsherife/university-portal-starter.git
-cd university-portal
+cd university-portal-starter
 composer install
 cp .env.example .env
 php artisan key:generate
