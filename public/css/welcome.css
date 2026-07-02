@@ -256,3 +256,85 @@ p {
 .btn-cancel:hover {
     background: rgba(255, 255, 255, 0.3);
 }
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 700px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .welcome-container {
+        height: auto;
+        min-height: 100vh;
+        padding: 30px 16px;
+    }
+
+    .glass-card {
+        width: 100%;
+        max-width: 480px;
+        padding: 35px 25px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    p {
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+
+    .graduation-icon svg {
+        width: 42px;
+        height: 42px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .glass-btn {
+        width: 100%;
+        font-size: 17px;
+        padding: 12px;
+    }
+
+    .popup-box {
+        width: 90%;
+        max-width: 400px;
+        padding: 28px 22px;
+    }
+
+    .popup-box h2 {
+        font-size: 21px;
+    }
+
+    .popup-box p {
+        font-size: 14.5px;
+    }
+
+    .popup-cap svg {
+        width: 55px;
+    }
+
+    .popup-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .popup-box button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 26px;
+    }
+
+    .glass-card {
+        padding: 28px 18px;
+    }
+}
