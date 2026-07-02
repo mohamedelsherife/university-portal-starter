@@ -20,6 +20,12 @@
 @section('your-title', 'Create Professor')
 
 @section('content')
+@if ($errors->any())
+    <x-alert type="error">
+        {{ $errors->first() }}
+    </x-alert>
+@endif
+
 
     <x-button type="back" :href="route('professors.index')" />
     <x-card title="Create New Professor">
