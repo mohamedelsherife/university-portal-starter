@@ -6,6 +6,7 @@ use App\Services\CourseService;
 use App\Services\EnrollmentService;
 use App\Services\StudentService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 /**
  * EnrollmentController (Student 5).
@@ -40,9 +41,23 @@ class EnrollmentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'student_id' => ['required', 'integer', 'exists:students,id'],
+            'student_id' => [
+                'required',
+                'integer',
+                'exists:students,id',
+                Rule::unique('enrollments')->where(
+                    fn ($query) => $query->where('course_id', $request->input('course_id'))
+                ),
+            ],
             'course_id' => ['required', 'integer', 'exists:courses,id'],
             'grade' => ['nullable', 'string', 'max:5'],
+        ], [
+            'student_id.required' => 'Please select a student.',
+            'student_id.exists'   => 'Selected student does not exist.',
+            'student_id.unique'   => 'This student is already enrolled in the selected course.',
+            'course_id.required'  => 'Please select a course.',
+            'course_id.exists'    => 'Selected course does not exist.',
+            'grade.max'           => 'Grade is too long.',
         ]);
 
         $this->enrollments->create($data);
@@ -67,9 +82,23 @@ class EnrollmentController extends Controller
     public function update(Request $request, int $id)
     {
         $data = $request->validate([
-            'student_id' => ['required', 'integer', 'exists:students,id'],
+            'student_id' => [
+                'required',
+                'integer',
+                'exists:students,id',
+                Rule::unique('enrollments')->where(
+                    fn ($query) => $query->where('course_id', $request->input('course_id'))
+                )->ignore($id),
+            ],
             'course_id' => ['required', 'integer', 'exists:courses,id'],
             'grade' => ['nullable', 'string', 'max:5'],
+        ], [
+            'student_id.required' => 'Please select a student.',
+            'student_id.exists'   => 'Selected student does not exist.',
+            'student_id.unique'   => 'This student is already enrolled in the selected course.',
+            'course_id.required'  => 'Please select a course.',
+            'course_id.exists'    => 'Selected course does not exist.',
+            'grade.max'           => 'Grade is too long.',
         ]);
 
         $this->enrollments->update($id, $data);

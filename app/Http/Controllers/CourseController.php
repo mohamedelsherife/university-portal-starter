@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\CourseService;
 use App\Services\DepartmentService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 /**
  * CourseController (Student 3).
@@ -34,9 +35,20 @@ class CourseController extends Controller
     {
         $data = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'course_code' => ['required', 'string', 'max:20'],
+            'course_code' => ['required', 'string', 'max:20', 'unique:courses,course_code'],
             'credit_hours' => ['required', 'integer', 'min:1', 'max:12'],
             'department_id' => ['nullable', 'integer', 'exists:departments,id'],
+        ], [
+            'title.required' => 'Course title is required.',
+            'title.max' => 'Course title is too long.',
+            'course_code.required' => 'Course code is required.',
+            'course_code.max' => 'Course code is too long.',
+            'course_code.unique' => 'A course with this code already exists, try another',
+            'credit_hours.required' => 'Credit hours is required.',
+            'credit_hours.integer' => 'Credit hours must be a number.',
+            'credit_hours.min' => 'Credit hours must be at least 1.',
+            'credit_hours.max' => 'Credit hours cannot exceed 12.',
+            'department_id.exists' => 'Selected department does not exist.',
         ]);
 
         $this->courses->create($data);
@@ -61,9 +73,20 @@ class CourseController extends Controller
     {
         $data = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'course_code' => ['required', 'string', 'max:20'],
+            'course_code' => ['required', 'string', 'max:20', Rule::unique('courses', 'course_code')->ignore($id)],
             'credit_hours' => ['required', 'integer', 'min:1', 'max:12'],
             'department_id' => ['nullable', 'integer', 'exists:departments,id'],
+        ], [
+            'title.required' => 'Course title is required.',
+            'title.max' => 'Course title is too long.',
+            'course_code.required' => 'Course code is required.',
+            'course_code.max' => 'Course code is too long.',
+            'course_code.unique' => 'A course with this code already exists.',
+            'credit_hours.required' => 'Credit hours is required.',
+            'credit_hours.integer' => 'Credit hours must be a number.',
+            'credit_hours.min' => 'Credit hours must be at least 1.',
+            'credit_hours.max' => 'Credit hours cannot exceed 12.',
+            'department_id.exists' => 'Selected department does not exist.',
         ]);
 
         $this->courses->update($id, $data);

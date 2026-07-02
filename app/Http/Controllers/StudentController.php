@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\DepartmentService;
 use App\Services\StudentService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 /**
  * StudentController (Student 2).
@@ -38,9 +39,18 @@ class StudentController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'student_number' => ['nullable', 'string', 'max:50'],
+            'email' => ['required', 'email', 'max:255', 'unique:students,email'],
+            'student_number' => ['nullable', 'string', 'max:50', 'unique:students,student_number'],
             'department_id' => ['nullable', 'integer', 'exists:departments,id'],
+        ], [
+            'name.required'  => 'Student name is required.',
+            'name.max'       => 'Student name is too long.',
+            'email.required' => 'Email is required.',
+            'email.email'    => 'Please enter a valid email address.',
+            'email.max'      => 'Email is too long.',
+            'email.unique'   => 'A student with this email already exists, try another',
+            'student_number.unique' => 'This student number is already in use, try another',
+            'department_id.exists'  => 'Selected department does not exist.',
         ]);
 
         $this->students->create($data);
@@ -65,9 +75,18 @@ class StudentController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'student_number' => ['nullable', 'string', 'max:50'],
+            'email' => ['required', 'email', 'max:255', Rule::unique('students', 'email')->ignore($id)],
+            'student_number' => ['nullable', 'string', 'max:50', Rule::unique('students', 'student_number')->ignore($id)],
             'department_id' => ['nullable', 'integer', 'exists:departments,id'],
+        ], [
+            'name.required'  => 'Student name is required.',
+            'name.max'       => 'Student name is too long.',
+            'email.required' => 'Email is required.',
+            'email.email'    => 'Please enter a valid email address.',
+            'email.max'      => 'Email is too long.',
+            'email.unique'   => 'A student with this email already exists.',
+            'student_number.unique' => 'This student number is already in use.',
+            'department_id.exists'  => 'Selected department does not exist.',
         ]);
 
         $this->students->update($id, $data);

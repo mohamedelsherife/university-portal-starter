@@ -26,7 +26,11 @@
 @section('your-title', 'Create Enrollment')
 
 @section('content')
-
+@if ($errors->any())
+    <x-alert type="error">
+        {{ $errors->first() }}
+    </x-alert>
+@endif
     <x-button type="back" :href="route('enrollments.index')" />
     <x-card title="Create New Enrollment">
         <x-form action="{{ route('enrollments.store') }}" method="POST">
