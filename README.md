@@ -7,10 +7,7 @@ A complete university portal system built with **Laravel**, using a **Controller
 ## 📌 Overview
 
 The project is split across team members, where each student builds a full CRUD module (Create, Read, Update, Delete) following a shared, consistent structure:
-
-```
 Controller → Service → DTO → Blade Views
-```
 
 ---
 
@@ -22,8 +19,13 @@ Controller → Service → DTO → Blade Views
 - Create the main layout `layouts/app.blade.php` (navigation, header, footer)
 - Create reusable Blade components used by the whole team:
   - `<x-button>`
-  - `<x-form-input>`
+  - `<x-table>`
   - `<x-card>`
+  - `<x-alert>`
+  - `<x-form>`
+  - `<x-form-input>`
+  - `<x-form-select>`
+  - `<x-search-bar>`
 
 **Module B: Department Management**
 
@@ -35,14 +37,12 @@ Controller → Service → DTO → Blade Views
 | Delete | Button to remove a department |
 
 **Files:**
-```
 DepartmentController.php
 DepartmentService.php
 DepartmentDTO.php
 views/departments/index.blade.php
 views/departments/create.blade.php
 views/departments/edit.blade.php
-```
 
 ---
 
@@ -56,14 +56,12 @@ views/departments/edit.blade.php
 | Delete | Delete a student |
 
 **Files:**
-```
 StudentController.php
 StudentService.php
 StudentDTO.php
 views/students/index.blade.php
 views/students/create.blade.php
 views/students/edit.blade.php
-```
 
 ---
 
@@ -77,14 +75,12 @@ views/students/edit.blade.php
 | Delete | Delete a course |
 
 **Files:**
-```
 CourseController.php
 CourseService.php
 CourseDTO.php
 views/courses/index.blade.php
 views/courses/create.blade.php
 views/courses/edit.blade.php
-```
 
 ---
 
@@ -98,14 +94,12 @@ views/courses/edit.blade.php
 | Delete | Delete a professor |
 
 **Files:**
-```
 ProfessorController.php
 ProfessorService.php
 ProfessorDTO.php
 views/professors/index.blade.php
 views/professors/create.blade.php
 views/professors/edit.blade.php
-```
 
 ---
 
@@ -121,23 +115,21 @@ Connects students and courses.
 | Delete | Drop a student from a course |
 
 **Files:**
-```
 EnrollmentController.php
 EnrollmentService.php
 EnrollmentDTO.php
 views/enrollments/index.blade.php
 views/enrollments/create.blade.php
 views/enrollments/edit.blade.php
-```
 
 ---
 
 ## 🎨 UI / Design
 
-The interface follows a consistent, dark-navbar + light-content theme across all modules.
+The interface follows a consistent, dark-navbar + light-content theme across all modules, and is **fully responsive** across desktop, tablet, and mobile screen sizes.
 
 **Layout & Style**
-- **Navbar**: full black bar with a 🎓 "University Portal" logo on the left, gold/yellow navigation links with icons (Dashboard, Departments, Students, Courses, Professors, Enrollments), and a user dropdown on the far right.
+- **Navbar**: full black bar with a 🎓 "University Portal" logo on the left, gold/yellow navigation links with icons (Dashboard, Departments, Students, Courses, Professors, Enrollments), and a user dropdown on the far right. Collapses into a **hamburger menu** on screens ≤992px, using a CSS-only checkbox toggle (no extra JavaScript).
 - **Accent color**: gold/yellow is used consistently for active states, buttons, and badge borders.
 - **Background**: light off-white background for page content, contrasting with the black navbar.
 
@@ -145,36 +137,60 @@ The interface follows a consistent, dark-navbar + light-content theme across all
 - Bold page title (e.g., "Students").
 - A **search bar** with a 🔍 icon and a placeholder like "Search by name, email or department..." — powered by **JavaScript** for instant/live filtering without a page reload.
 - A prominent yellow **"+ Create new [Entity]"** button next to the search bar.
-- A **data table** with a black header row and columns such as ID, Name, Email, Student Number, Department, Actions.
+- A **data table** with a black header row and columns such as ID, Name, Email, Student Number, Department, Actions. On smaller screens, the table scrolls horizontally with a sticky first column and a scroll-hint shadow.
 - Status/relationship fields (e.g., Department) are shown as **badges** — a plain label when set, or a red-outlined "No Department" badge when missing.
 - **Actions column** has circular icon buttons: an edit button (yellow outline, pencil icon) and a delete button (red outline, trash icon).
 
 **Reusable Blade Components**
 
 All pages are built on top of a shared set of Blade components (fulfilling W14 — Reusable Components):
-
-```
 components/
-├── button.blade.php        → styled buttons (create, edit, delete)
-├── card.blade.php          → content cards/containers
-├── form-input.blade.php    → text input fields
-├── form-select.blade.php   → dropdown/select fields
-├── form.blade.php          → form wrapper
-├── search-bar.blade.php    → JS-powered live search bar
-└── table.blade.php         → reusable data table
-```
+├── x-alert          → validation/success error banners
+├── x-button          → styled buttons (create, edit, delete, back, submit)
+├── x-card            → content cards/containers
+├── x-form            → form wrapper
+├── x-form-input      → text input fields
+├── x-form-select     → dropdown/select fields
+└── x-table           → reusable data table
 
-The `search-bar.blade.php` component encapsulates the JavaScript logic for live search, and is reused across all index pages (Students, Courses, Departments, Professors, Enrollments) so every module shares the exact same look and search behavior.
+---
+
+## 🔒 Validation Rules
+
+Every module enforces server-side duplicate-prevention validation via Laravel's `Rule::unique()`, with custom, human-readable error messages:
+
+| Module | Unique fields |
+|---|---|
+| Department | `name` |
+| Professor | `name`, `email` |
+| Student | `email`, `student_number` |
+| Course | `course_code` |
+| Enrollment | `student_id` + `course_id` combination (a student can't be enrolled in the same course twice, but can enroll in multiple courses) |
+
+On `update`, all unique checks `->ignore($id)` the current record so editing a record doesn't falsely flag itself as a duplicate.
+
+**Authentication**
+- Registration email must contain at least one non-numeric character before the `@` (rejects addresses like `12231@email.com`) via a custom regex rule.
+- Password fields on both the login and registration forms include a **show/hide toggle** (eye icon), implemented with a small vanilla JS snippet — no extra libraries.
+
+---
+
+## 📱 Responsive Design
+
+The portal adapts across breakpoints (992px / 768px / 576px / 480px) covering:
+- Navbar → hamburger menu on tablet/mobile
+- Data tables → horizontal scroll with sticky first column + scroll-hint shadow
+- Forms (Create/Edit) → full-width stacked fields, full-width submit button on small screens
+- Dashboard stat cards → auto-fit grid that collapses to 2 columns on mobile
+- Login/Register split-panel cards → stack vertically on screens ≤860px
+- Welcome landing page → fluid card width, stacked action buttons on mobile
 
 ---
 
 ## 🏗️ Architecture Pattern
-
-```
 ┌─────────────┐     ┌─────────┐     ┌──────┐     ┌──────────────┐
 │  Controller │ --> │ Service │ --> │  DTO │ --> │ Blade Views  │
 └─────────────┘     └─────────┘     └──────┘     └──────────────┘
-```
 
 - **Controller**: receives the request and delegates to the Service
 - **Service**: contains the business logic
@@ -191,14 +207,14 @@ The `search-bar.blade.php` component encapsulates the JavaScript logic for live 
 | W11 | OOP (Classes) | All Service & DTO files |
 | W12 | Artisan usage | Generating Controllers |
 | W13 | Layouts & Views | Using `layouts/app.blade.php` |
-| W14 | Reusable Components | `<x-button>`, `<x-form-input>`, `<x-card>` |
+| W14 | Reusable Components | `<x-button>`, `<x-form-input>`, `<x-card>`, `<x-table>`, `<x-alert>` |
 
 ---
 
 ## 🚀 Setup
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/mohamedelsherife/university-portal-starter.git
 cd university-portal
 composer install
 cp .env.example .env
@@ -209,15 +225,13 @@ php artisan serve
 
 ---
 
-## 👥 Team Breakdown
+## 👨‍💻 Contributors
 
-| Student | Module |
+| Name | Role |
 |---|---|
-| Mohamed (Student 1) | Core UI + Department Management |
-| Ahlem (Student 2) | Student Management |
-| Farah (Student 3) | Course Management |
-| Optional | Professor Management |
-| Optional | Enrollment Management |
+| Mohamed | Student 1 — Core UI & Layout, Department Management |
+| Ahlem | Student 2 — Student Management |
+| Farah | Student 3 — Course Management |
 
 ---
 
