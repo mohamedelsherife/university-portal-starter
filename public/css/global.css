@@ -774,3 +774,98 @@ nav {
         width: 320px;
     }
 }
+
+/* ============ Form buttons full-width on mobile ============ */
+@media (max-width: 576px) {
+    .card form .custome-btn,
+    x-form .custome-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* تقليل الفراغ الأبيض تحت الكارد قبل الفوتر */
+@media (max-width: 768px) {
+    footer {
+        margin-top: 20px;
+    }
+}
+
+/* ============ Dashboard ============ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.stat-card i {
+    font-size: 35px;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+.overview-box {
+    background: #fff8e8;
+    border-left: 5px solid #F59E0B;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.modules-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 18px;
+    }
+
+    .stat-card i {
+        font-size: 28px;
+    }
+
+    .stat-card h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 14px;
+    }
+
+    .stat-card h3 {
+        font-size: 0.9rem;
+        margin: 8px 0 4px;
+    }
+
+    .stat-card h1 {
+        font-size: 1.4rem;
+    }
+}
+

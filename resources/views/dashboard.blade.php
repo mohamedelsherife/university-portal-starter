@@ -6,34 +6,34 @@
 <h1 class="page-title text-center"><i class="fa-solid fa-gauge"></i> Dashboard</h1>
 <x-card>
 
-<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;">
+<div class="stats-grid">
 
-    <div style="background:#fff; border-radius:15px; padding:25px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
-        <i class="fa-regular fa-building" style="font-size:35px; color:#3B82F6;"></i>
+    <div class="stat-card">
+        <i class="fa-regular fa-building" style="color:#3B82F6;"></i>
         <h3 style="color:#3B82F6;">Departments</h3>
         <h1 style="color:#3B82F6;">{{ $departmentsCount }}</h1>
     </div>
 
-    <div style="background:#fff; border-radius:15px; padding:25px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
-        <i class="fa-solid fa-user-graduate" style="font-size:35px; color:#10B981;"></i>
+    <div class="stat-card">
+        <i class="fa-solid fa-user-graduate" style="color:#10B981;"></i>
         <h3 style="color:#10B981;">Students</h3>
         <h1 style="color:#10B981;">{{ $studentsCount }}</h1>
     </div>
 
-    <div style="background:#fff; border-radius:15px; padding:25px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
-        <i class="fa-solid fa-book" style="font-size:35px; color:#F59E0B;"></i>
+    <div class="stat-card">
+        <i class="fa-solid fa-book" style="color:#F59E0B;"></i>
         <h3 style="color:#F59E0B;">Courses</h3>
         <h1 style="color:#F59E0B;">{{ $coursesCount }}</h1>
     </div>
 
-    <div style="background:#fff; border-radius:15px; padding:25px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
-        <i class="fa-solid fa-person-chalkboard" style="font-size:35px; color:#EF4444;"></i>
+    <div class="stat-card">
+        <i class="fa-solid fa-person-chalkboard" style="color:#EF4444;"></i>
         <h3 style="color:#EF4444;">Professors</h3>
         <h1 style="color:#EF4444;">{{ $professorsCount }}</h1>
     </div>
 
-    <div style="background:#fff; border-radius:15px; padding:25px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
-        <i class="fa-solid fa-users" style="font-size:35px; color:#8B5CF6;"></i>
+    <div class="stat-card">
+        <i class="fa-solid fa-users" style="color:#8B5CF6;"></i>
         <h3 style="color:#8B5CF6;">Enrollments</h3>
         <h1 style="color:#8B5CF6;">{{ $enrollmentsCount }}</h1>
     </div>
@@ -42,9 +42,9 @@
 
 <hr style="margin:35px 0;">
 
-<div style="display:grid; grid-template-columns:2fr 1fr; gap:25px; align-items:start;">
+<div class="overview-grid">
 
-    <div style="background:#fff8e8; border-left:5px solid #F59E0B; padding:25px; border-radius:12px;">
+    <div class="overview-box">
         <h3 style="margin-bottom:10px;">
             <i class="fa-solid fa-circle-info" style="color:#F59E0B;"></i>
             System Overview
@@ -57,7 +57,7 @@
         </p>
     </div>
 
-    <div style="background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+    <div class="modules-box">
         <h3 style="margin-bottom:15px;">Main Modules</h3>
 
         <p><i class="fa-regular fa-building" style="color:#3B82F6;"></i> Department Management</p>
