@@ -52,18 +52,20 @@
                 </div>
             </div>
 
-            <div class="field">
-                <label for="password">Password</label>
-                <div class="input-wrap">
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        required
-                    />
-                </div>
-            </div>
+         <div class="field">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+            <input
+            type="password"
+            name="password"
+            id="password"
+            class="password-field"
+            placeholder="Enter your password"
+            required
+            />
+        <i class="fa-regular fa-eye toggle-password" data-target="password"></i>
+        </div>
+        </div>
 
             <div class="form-row">
                 <label class="check-label">
@@ -85,6 +87,18 @@
     </div>
 
 </div>
+<script>
+document.querySelectorAll('.toggle-password').forEach(function (icon) {
+    icon.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.target);
+        const isHidden = input.type === 'password';
 
+        input.type = isHidden ? 'text' : 'password';
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+});
+</script>
+</body>
 </body>
 </html>

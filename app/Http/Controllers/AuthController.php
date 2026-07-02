@@ -61,25 +61,33 @@ class AuthController extends Controller
     }
 
     /** Create a new account and sign the user in. */
-    public function register(Request $request)
-    {
-        $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'confirmed', 'min:6'],
-        ]);
+public function register(Request $request)
+{
+    $data = $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => [
+            'required',
+            'email',
+            'max:255',
+            'unique:users,email',
+            'regex:/^(?!\d+@).+$/',
+        ],
+        'password' => ['required', 'confirmed', 'min:6'],
+    ], [
+        'email.regex' => 'Email cannot start with numbers only, please use a valid email format.',
+    ]);
 
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'], // hashed automatically by the model's cast
-        ]);
+    $user = User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => $data['password'], // hashed automatically by the model's cast
+    ]);
 
-        Auth::login($user);
-        $request->session()->regenerate();
+    Auth::login($user);
+    $request->session()->regenerate();
 
-        return redirect()->route('dashboard');
-    }
+    return redirect()->route('dashboard');
+}
 
     /** Log the user out and invalidate the session. */
     public function logout(Request $request)

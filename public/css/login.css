@@ -316,3 +316,29 @@ body {
         gap: 12px;
     }
 }
+
+/* ============ Password toggle ============ */
+.input-wrap {
+    position: relative;
+}
+
+.input-wrap input[type="password"],
+.input-wrap input.password-field {
+    padding-right: 42px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #b0b0b0;
+    font-size: 15px;
+    transition: color 0.2s;
+    user-select: none;
+}
+
+.toggle-password:hover {
+    color: #F2B33D;
+}

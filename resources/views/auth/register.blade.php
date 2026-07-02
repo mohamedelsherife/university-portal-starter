@@ -66,30 +66,34 @@
             </div>
 
             <div class="field">
-                <label for="password">Password</label>
-                <div class="input-wrap">
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Create a password"
-                        required
-                    />
-                </div>
-            </div>
+    <label for="password">Password</label>
+    <div class="input-wrap">
+        <input
+            type="password"
+            name="password"
+            id="password"
+            class="password-field"
+            placeholder="Create a password"
+            required
+        />
+        <i class="fa-regular fa-eye toggle-password" data-target="password"></i>
+    </div>
+</div>
 
-            <div class="field">
-                <label for="password_confirmation">Confirm Password</label>
-                <div class="input-wrap">
-                    <input
-                        type="password"
-                        name="password_confirmation"
-                        id="password_confirmation"
-                        placeholder="Re-enter your password"
-                        required
-                    />
-                </div>
-            </div>
+<div class="field">
+    <label for="password_confirmation">Confirm Password</label>
+    <div class="input-wrap">
+        <input
+            type="password"
+            name="password_confirmation"
+            id="password_confirmation"
+            class="password-field"
+            placeholder="Re-enter your password"
+            required
+        />
+        <i class="fa-regular fa-eye toggle-password" data-target="password_confirmation"></i>
+    </div>
+</div>
 
             <button type="submit" class="btn-login">Sign up</button>
 
@@ -103,5 +107,17 @@
 
 </div>
 
+<script>
+document.querySelectorAll('.toggle-password').forEach(function (icon) {
+    icon.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.target);
+        const isHidden = input.type === 'password';
+
+        input.type = isHidden ? 'text' : 'password';
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+});
+</script>
 </body>
 </html>
