@@ -1,7 +1,7 @@
 <header>
   <div class="logo">
     <a href="{{ route('dashboard') }}">
-      <i class="fa-solid fa-graduation-cap"></i> university portal
+      <i class="fa-solid fa-university" aria-hidden="true" style="color: #F2B33D "></i> university portal
     </a>
   </div>
 
